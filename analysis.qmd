@@ -1,0 +1,51 @@
+---
+title: "Exploring Storms"
+author: "Angel Frias"
+format: html
+execute:
+  echo: false
+---
+
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+#| label: storms-plot
+storms |>
+  distinct(year, name, status) |>
+  count(year, status) |>
+  complete(year, status, fill = list(n = 0)) |>
+  ggplot(aes(x = year, y = n, fill = status)) +
+  geom_area() +
+  labs(
+    title = "Count of Storms by Status Each Year",
+    x = "Year",
+    y = "Number of Storms",
+    fill = "Storm Status"
+  )
+```
+
+```{r}
+#| label: filter-storms
+#| cache: true
+storms_recent <- storms |>
+  filter(year >= 2000) |>
+  select(year, name, status, wind, pressure)
+```
+
+```{r}
+#| label: pressure-vs-wind
+storms_recent |>
+  ggplot(aes(x = wind, y = pressure, color = status)) +
+  geom_point(alpha = 0.4) +
+  labs(
+    title = "Relationship Between Atmospheric Pressure and Wind Speed",
+    subtitle = "Atlantic storms from 2000 onward show an inverse relationship across storm statuses",
+    x = "Sustained Wind Speed (knots)",
+    y = "Atmospheric Pressure (millibars)",
+    color = "Storm Status"
+  )
+```

@@ -1,0 +1,29 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session data files
+.RData
+.RDataTmp
+Rplots.pdf
+
+# User-specific files
+.Ruserdata
+
+# Environment variables & secrets (e.g., API keys)
+.Renviron
+.env
+
+# RStudio / IDE project files
+.Rproj.user/
+
+# Quarto temporary and rendered folders
+/.quarto/
+*_files/
+*_cache/
+_site/
+_book/
+
+# Operating system files
+.DS_Store
+Thumbs.db
